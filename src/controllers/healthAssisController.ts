@@ -1,13 +1,14 @@
 import { Request,Response,NextFunction } from "express";
 import { createHealthAssistant } from "../services/healthAssitantServices";
 
-export const createDepartmentController = async (req:Request,res:Response,next:NextFunction) => {
+export const createHealthAssiController = async (req:Request,res:Response,next:NextFunction) => {
     try{
-        const deptName = 'Operation theater complex (OT)';
-        const desc = ' facility within a hospital where surgical operations are carried out in an aseptic environment.';
-        const department = await createHealthAssistant(deptName,desc);    
-        console.log(department);
-        res.status(201).json(department);
+        const name = req.body.name;
+        const deptID= req.body.deptID;
+        const createdBy = Object(req.body.createdBy);
+        const healthAsis = await createHealthAssistant(name,deptID,createdBy);    
+        console.log(healthAsis);
+        res.status(201).json(healthAsis);
     }catch(err){
         res.status(500).json({error:err});
     }

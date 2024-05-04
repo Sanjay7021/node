@@ -9,9 +9,10 @@ export interface IDoc extends Document{
     modifyBy:Object
 }
 
-const docSchema = new Schema<IDoc>({
+const docSchema = new Schema({
     dName :{
         type:String,
+        required:true
     },
         deptID:{
             type:Schema.Types.ObjectId,
@@ -34,7 +35,11 @@ const docSchema = new Schema<IDoc>({
         type:Schema.Types.ObjectId,
         ref:'admin'
     }
-});
+},{timestamps:true});
 
+// docSchema.pre('insertMany', function (next) {
+//     this.updatedAt = new Date;
+//     this.modifyBy = Object('663486c4e5b8561bb62821ce');
+// })
 const docModel  = model<IDoc>('Doctor',docSchema);
 export default docModel;

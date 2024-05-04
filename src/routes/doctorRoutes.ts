@@ -1,11 +1,12 @@
 import express from 'express';
+import { createDoctorController,updateDoctorById } from '../controllers/doctorController';
 
 const app = express();
 
 const router = express.Router();
 
-router.get('/',function (req,res,next){
-    res.send('doctor');
-})
+router.post('/',createDoctorController);
+router.put('/:id',updateDoctorById)
+
 
 export default router;

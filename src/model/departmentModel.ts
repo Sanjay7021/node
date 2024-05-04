@@ -40,6 +40,7 @@ const deptSchema = new Schema({
 
 deptSchema.pre('save', function (next) {
     this.updatedAt = new Date;
+    this.modifyBy = Object('663486c4e5b8561bb62821ce');
 })
 const deptModel = model<IDpt>('Department',deptSchema);
 export default deptModel;

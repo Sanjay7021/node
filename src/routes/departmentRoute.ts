@@ -5,6 +5,6 @@ const app = express();
 
 const router = express.Router();
 
-router.get('/',createDepartmentController)
+router.post('/',createDepartmentController)
 
 export default router;

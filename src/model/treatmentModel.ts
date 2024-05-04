@@ -1,9 +1,10 @@
 import {Schema,Document, model} from 'mongoose';
 
 
-const treatementModel = new Schema({
+const treatementSchema = new Schema({
     patientID : {
-        type:String,
+        type:Schema.Types.ObjectId,
+        ref:'patient',
         required:[true,'patientId required']
     },
     docID:[{
@@ -27,10 +28,10 @@ const treatementModel = new Schema({
             required:[true,'drug id missing']
         },
         type:{
+            type:String,
             enum:{
                 values:['morning','afternoon','evening','all'],
-                default:'all',
-                message: '{VALUE} is not supported'
+                message: 'is not supported'
             }
         }
     }
@@ -54,4 +55,14 @@ const treatementModel = new Schema({
         type:Schema.Types.ObjectId,
         ref:'doctor'
     }
-}) 
+},{timestamps:true}) 
+
+
+treatementSchema.pre('save', function (next) {
+    this.updatedAt = new Date;
+    this.modifyBy = Object('663486c4e5b8561bb62821ce');
+})
+
+
+const treatementModel = model('treatement',treatementSchema);
+export default treatementModel;

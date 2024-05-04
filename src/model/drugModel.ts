@@ -1,3 +1,4 @@
+import { timeStamp } from 'console';
 import {Schema, model, Document} from 'mongoose';
 
 export interface IDrug extends Document{
@@ -33,7 +34,7 @@ const drugSchema = new Schema<IDrug>({
         type:Schema.Types.ObjectId,
         ref:'doctor'
     }
-})
+},{timestamps:true})
 
 const drugModel = model('drug',drugSchema);
 export default drugModel;

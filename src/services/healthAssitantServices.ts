@@ -1,6 +1,6 @@
 import healthAssModel from "../model/healthAssistent"
 
-export const createHealthAssistant = async (deptName:string, description: string) => {
-   const department = new healthAssModel({name:deptName,description:description});
-   return await department.save();
+export const createHealthAssistant = async (name:string, deptID: string, createdBy:string) => {
+   const healthAsis = new healthAssModel({name,deptID,createdBy});
+   return healthAssModel.insertMany(healthAsis);
 };

@@ -37,15 +37,12 @@ const patientSchema:Schema = new Schema <IPatient>({
         type:Schema.Types.ObjectId,
         ref:'admin'
     },
-    updatedAt:{
-        type:Date
-    },
     modifyBy:{
         type:Schema.Types.ObjectId,
         ref:'admin'
     }
     
-}) 
+},{timestamps:true}); 
 
 const patientModel = model<IPatient>('patient',patientSchema);
 export default patientModel;
